@@ -1,0 +1,11 @@
+{
+  "template": "./2.template.js",
+  "data": {
+    "header": "Template 2",
+    "images": [
+      "https://picsum.photos/id/1/200/300/",
+      "https://picsum.photos/id/2/200/300/",
+      "https://picsum.photos/id/3/200/300/"
+    ]
+  }
+}
