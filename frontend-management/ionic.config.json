@@ -1,0 +1,7 @@
+{
+  "name": "frontend-management",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "react-vite"
+}
