@@ -6,14 +6,17 @@ const app: Application = express();
 app.use(express.json());
 app.use(express.urlencoded());
 
-app.get('/template/:fileName', async (req, res) => {
+app.get('/page/:fileName', async (req, res) => {
   const fileName = req.params.fileName;
-  const json = await readFile(`./jsons/template${fileName}.json`);
+  const json = await readFile(`./pages/page${fileName}.json`);
 
+  res.setHeader('Content-Type','application/json')
+  res.setHeader('Access-Control-Allow-Origin', '*')
+  res.setHeader('Access-Control-Allow-Methods','POST,PATCH,OPTIONS')
   res.send(json.toString());
 });
 
-app.post('/template/:fileName', async (req, res) => {
+app.post('/page/:fileName', async (req, res) => {
   try {
     const fileName = req.params.fileName;
     const file = req.body.file;
@@ -23,11 +26,11 @@ app.post('/template/:fileName', async (req, res) => {
     }
 
     await writeFile(
-      `./templates/template${fileName}.json`,
+      `./pages/page${fileName}.json`,
       JSON.stringify(file, null, 1)
     );
 
-    const json = await readFile(`./templates/template${fileName}.json`);
+    const json = await readFile(`./pages/page${fileName}.json`);
     res.send('DONE\n' + json.toString());
   } catch (e) {
     console.error(e);
